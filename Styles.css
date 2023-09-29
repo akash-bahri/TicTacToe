@@ -1,0 +1,16 @@
+.button {
+    background-color: wheat;
+    color: black;
+    padding: 10px 10px;
+    text-align: center;
+    margin: 10px;
+    width: 150px;
+  }
+  .text {
+      text-align: center;
+      border: 3px solid black;
+      width: 50px ;
+      padding: 10px 10px;
+      margin: 20px;
+      font-size: 35px;
+  }
