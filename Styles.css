@@ -1,16 +1,57 @@
+body {
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 20px
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-row {
+  display: flex;
+  justify-content: center;
+}
+
+.grid-item {
+  display: flex;
+  width: 150px;
+  height: 150px;
+  background-color: rgb(113, 117, 121);
+  margin: 0px;
+}
+
 .button {
-    background-color: wheat;
-    color: black;
-    padding: 10px 10px;
-    text-align: center;
-    margin: 10px;
-    width: 150px;
-  }
-  .text {
-      text-align: center;
-      border: 3px solid black;
-      width: 50px ;
-      padding: 10px 10px;
-      margin: 20px;
-      font-size: 35px;
-  }
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 10px 10px;
+  text-align: center;
+  margin: 5%;
+  width: 90%;
+  height: 90%;
+  font-size: 35px;
+}
+
+.button:hover {
+  background-color: rgb(107, 180, 206);
+}
+
+.result {
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+  width: 25.2%;
+  padding: 10px;
+  margin: 20px auto;
+  font-size: 35px;
+}
+
+
+

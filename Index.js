@@ -1,96 +1,72 @@
-//Array that will store all input values in the grid
-const array = [];
+//
+class Game {
+    constructor(Player, DataArray, Counter) {
+        this.Player = Player;
+        this.DataArray = DataArray;
+        this.Counter = Counter;
+    }
 
-//Function to check if user has input any wrong value
-function valid(array) {
+    Analyze(GridVal) {
+        
+        var PlayerValue=this.Player;
+        
+        //document.getElementById("test").innerText=GridVal;
+        this.Counter++;
+        document.getElementById(GridVal).innerText=PlayerValue;
+        document.getElementById(GridVal).disabled=true;
+        document.getElementById(GridVal).style.backgroundColor="lightgrey";
+        this.DataArray[GridVal] = PlayerValue;
+        if (this.Counter<5) return false;
+        if (this.CheckWinner(1, 2, 3)) return true;
+        if (this.CheckWinner(4, 5, 6)) return true;
+        if (this.CheckWinner(7, 8, 9)) return true;
+        if (this.CheckWinner(1, 4, 7)) return true;
+        if (this.CheckWinner(2, 5, 8)) return true;
+        if (this.CheckWinner(3, 6, 9)) return true;
+        if (this.CheckWinner(1, 5, 9)) return true;
+        if (this.CheckWinner(3, 5, 7)) return true;
+        
+        return false;
+    }
 
-    for (i = 1; i < 10; i++) {
-        if (array[i] === 'X' || array[i] === 'x' || array[i] === 'O' || array[i] === 'o' || array[i] == '')
-            continue;
+    CheckWinner(G1, G2, G3) {
+        //document.getElementById("test").innerText="checkwinner";
+        if (this.DataArray[G1] == this.DataArray[G2] & this.DataArray[G2] == this.DataArray[G3] & this.DataArray[G1] != undefined)
+            {
+                document.getElementById(G1).style.backgroundColor="green";
+                document.getElementById(G2).style.backgroundColor="green";
+                document.getElementById(G3).style.backgroundColor="green";
+                return true;
+            }
+        else return false;
+
+    }
+
+    Result(GridVal){
+       // document.getElementById("test").innerText="result";
+        if(this.Analyze(GridVal)){
+            document.getElementById("result").innerText="WINNER IS: "+this.Player;
+            
+
+            var buttons=document.getElementsByClassName("button");
+                for(var i = 0; i < buttons.length; i++) {
+                        buttons[i].disabled = true;
+}
+
+
+
+        }
+        else 
+        {
+            if(this.Player=='X')
+            this.Player='O';
         else
-            return false;
-    }
-    return true;
-}
-
-//Main function performing all actions and checking who won
-function analyze() {
-
-    //Reading values and storing in array
-    for (let i = 1; i < 10; i++) {
-        array[i] = document.getElementById(i).value;
-        //console.log("2nd"+array[i]);
-        array[i] = array[i].toUpperCase();
-        //console.log("2nd: "+array[i]);
-    }
-
-    //Checking input validity
-    if (valid(array) == false) {
-        document.getElementById('display').innerText = 'INVALID INPUT \n Please Reset!';
-        document.getElementById('submit').style.backgroundColor = 'grey';
-        document.getElementById('submit').disabled = true;
-        return;
-    }
-
-    //Horizontal winner
-    for (let i = 1; i < 8; i = i + 3) {
-        if (array[i] == array[i + 1] && array[i + 1] == array[i + 2]) {
-            if (array[i] != '') {
-                won(array[i], i, i + 1, i + 2);
-                return;
-            }
+            this.Player='X';
+        document.getElementById("result").innerText="TURN : "+this.Player;
         }
     }
 
-    //Vertical winner
-    for (let i = 1; i < 4; i++) {
-        if (array[i] == array[i + 3] && array[i] == array[i + 6]) {
-            if (array[i] != '') {
-                won(array[i], i, i + 3, i + 6);
-                return;
-            }
-        }
-    }
-
-    //Diagonal winner
-    if (array[1] == array[5] && array[5] == array[9]) {
-        if (array[1] != '') {
-            won(array[1], 1, 5, 9);
-            return;
-        }
-    }
-
-    if (array[3] == array[5] && array[5] == array[7]) {
-        if (array[3] != '') {
-            won(array[3], 3, 5, 7);
-            return;
-        }
-    }
-
-    //No winner
-    document.getElementById('display').innerText = "No winners. \n But hey no losers either! \n Try again?"
-    document.getElementById('submit').disabled = true;
-    document.getElementById('submit').style.backgroundColor = 'grey';
 }
 
-//Function to Display winner and highlight fields
-function won(winner, a, b, c) {
-    document.getElementById('display').innerText = " WINNER IS : " + winner;
-    document.getElementById('submit').style.backgroundColor = 'grey';
-    document.getElementById('submit').disabled = true;
-    document.getElementById(a).style.backgroundColor = 'palegreen';
-    document.getElementById(b).style.backgroundColor = 'palegreen';
-    document.getElementById(c).style.backgroundColor = 'palegreen';
-}
+const NewGame = new Game('X',{},0);
 
-//Function to Clear all fields and enable submit button
-function reset() {
-    for (let i = 1; i < 10; i++) {
-        document.getElementById(i).value = '';
-        document.getElementById(i).style.backgroundColor = 'white';
-        document.getElementById('display').innerText = '';
-        document.getElementById('submit').disabled = false;
-        document.getElementById('submit').style.backgroundColor = 'wheat';
-    }
-
-}
