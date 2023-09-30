@@ -13,9 +13,26 @@
   <div class="heading">
     <h1>TIC TAC TOE</h1>
   </div>
-
-  <!-- Button Grid -->
+  
   <div class="grid-container">
+
+
+
+
+    <div class="grid-row">
+      <div class="text">Player 1 Name:&nbsp<input type="text" id="player1" placeholder="X"/></div>
+      <div class="text">HISTORY Name:&nbsp<select id="dropdown">
+        <!-- Options will be added here -->
+      </select></div>
+      <div class="text">Player 2 Name:&nbsp<input type="text" id="player2" placeholder="O"/></div>
+
+      
+    </div>
+
+
+
+
+
     <div class="grid-row">
       <div class="grid-item">
         <button type="button" id="1" class="button" onclick="NewGame.Result(1)"></button>
@@ -52,6 +69,7 @@
   </div>
 
   <div class="result" id="result">TURN : X</div>
+  <div class="result"><button type="button" class="reset" id="reset" onclick="">RESET</button></div>
   <!-- <div class="result" id="test"> hi </div> -->
   <script>
     //document.getElementById("test").innerText="all okay";
